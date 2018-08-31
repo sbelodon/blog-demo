@@ -55,6 +55,7 @@
 			<systemPath>${project.basedir}/lib/ojdbc8.jar</systemPath>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<!-- for compatibility with java 9 -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>

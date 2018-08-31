@@ -21,9 +21,8 @@ public class BlogResource {
     private BlogDao blogDao;
 
     @GetMapping(path = "/")
-    public ResponseEntity<Map<String, List<BlogItem>>> getAll() {
+    public ResponseEntity<List<BlogItem>> getAll() {
         Map<String, List<BlogItem>> map = new HashMap<>();
-        map.put("result", blogDao.getAllBlogItems());
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return new ResponseEntity<>(blogDao.getAllBlogItems(), HttpStatus.OK);
     }
 }

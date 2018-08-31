@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class BlogDao {
         SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
         return (List<BlogItem>) session.createQuery("from BlogItem").list();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public BlogItem getBlogItemImageByBlogId(Integer id){
+    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from BlogItem bi where bi.id=:id").setInteger("id", id);
+		return (BlogItem)query.uniqueResult();
     }
 }
