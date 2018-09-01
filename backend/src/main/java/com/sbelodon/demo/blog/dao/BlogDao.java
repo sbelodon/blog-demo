@@ -35,12 +35,12 @@ public class BlogDao {
     }
     
     @SuppressWarnings("unchecked")
-    public BlogItem save(BlogItem blogItem) {
+    public Integer save(BlogItem blogItem) {
     	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
         Integer savedId = (Integer)session.save(blogItem);
         session.flush();
-        return getBlogItemById(savedId);
+        return savedId;
     }
     
     @SuppressWarnings("unchecked")

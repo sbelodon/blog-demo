@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, RouterModule} from '@angular/router';
+import { ClickableParentComponent } from "./clickable.parent.component";
 
 @Component({
   templateUrl: './list.component.html',
@@ -11,16 +13,19 @@ export class ListComponent {
    columnDefs = [
    		{headerName: 'Image', field: 'id',
    		cellRenderer: params => {
-        return '<img src="api/image/'+params.value+'"/>';
+       		return '<img src="api/image/'+params.value+'"/>';
     	}},
         {headerName: 'Title', field: 'title' },
         {headerName: 'Category', field: 'category' },
-        {headerName: 'Description', field: 'description'}
+        {headerName: 'Description', field: 'description'},
+        {headerName: 'Edit', field: 'id',
+        	 cellRendererFramework: ClickableParentComponent
+   		}
     ];
 
     rowData: any;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private router:Router) {
 
     }
 

@@ -2,6 +2,8 @@ package com.sbelodon.demo.blog.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
@@ -11,7 +13,8 @@ import javax.persistence.Table;
 @Table(name = "BLOG_ITEM")
 public class BlogItem {
     @Id
-    @SequenceGenerator(name = "BLOG_ITEM_SEQ")
+    @SequenceGenerator(name = "blogItemSeq",sequenceName="BLOG_ITEM_SEQ")
+    @GeneratedValue(generator="blogItemSeq")
     @Column(name = "blog_item_id")
     private int id;
 
