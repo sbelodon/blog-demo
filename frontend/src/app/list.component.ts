@@ -18,7 +18,7 @@ export class ListComponent {
         {headerName: 'Title', field: 'title' },
         {headerName: 'Category', field: 'category' },
         {headerName: 'Description', field: 'description'},
-        {headerName: 'Edit', field: 'id',
+        {headerName: 'Actions', field: 'id',
         	 cellRendererFramework: ClickableParentComponent
    		}
     ];

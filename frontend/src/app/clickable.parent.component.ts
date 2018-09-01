@@ -1,22 +1,25 @@
 import {Component} from "@angular/core";
 import {ICellRendererAngularComp} from "ag-grid-angular";
 import { Router, RouterModule} from '@angular/router';
+import { HttpClient} from '@angular/common/http';
 
-// both this and the parent component could be folded into one component as they're both simple, but it illustrates how
-// a fuller example could work
 @Component({
-    selector: 'clickable-cell',
-    template: '<a [routerLink]="[\'/blog\']" [queryParams]="{id: params.value }">Edit</a>'
+	templateUrl: './clickable.parent.component.html',
 })
-export class ClickableParentComponent implements ICellRendererAngularComp {
+export class ClickableParentComponent implements ICellRendererAngularComp{
     public params: any;
     public cell: any;
 
+	constructor(private http: HttpClient){}
+	
     agInit(params: any): void {
         this.params = params;
         this.cell = {row: params.value, col: params.colDef.headerName};
     }
     refresh(): boolean {
         return false;
+    }
+    onDelete(param){
+    	this.http.delete('api/blog/'+param.id).subscribe();
     }
 }

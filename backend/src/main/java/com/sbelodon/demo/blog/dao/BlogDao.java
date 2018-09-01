@@ -26,7 +26,6 @@ public class BlogDao {
         return (List<BlogItem>) session.createQuery("from BlogItem").list();
     }
     
-    @SuppressWarnings("unchecked")
     public BlogItem getBlogItemImageByBlogId(Integer id){
     	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
@@ -34,7 +33,6 @@ public class BlogDao {
 		return (BlogItem)query.uniqueResult();
     }
     
-    @SuppressWarnings("unchecked")
     public Integer save(BlogItem blogItem) {
     	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
@@ -43,7 +41,6 @@ public class BlogDao {
         return savedId;
     }
     
-    @SuppressWarnings("unchecked")
     public void update(BlogItem blogItem) {
     	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
@@ -51,11 +48,18 @@ public class BlogDao {
         session.flush();
     }
     
-    @SuppressWarnings("unchecked")
     public BlogItem getBlogItemById(Integer id){
     	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from BlogItem bi where bi.id=:id").setInteger("id", id);
 		return (BlogItem)query.uniqueResult();
+    }
+    
+    public void delete(Integer id) {
+    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("delete BlogItem bi where bi.id=:id").setInteger("id", id);
+        query.executeUpdate();
+        session.flush();    	
     }
 }

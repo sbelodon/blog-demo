@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Response} from '@angular/http';
 import { BlogItem} from './blogItem';
 import { Observable} from 'rxjs/Rx'
@@ -21,7 +21,6 @@ export class BlogComponent implements OnInit{
     	category: new FormControl(''),
     	description: new FormControl(''),
   	});
-	headers: HttpHeaders;
  	id:number;
 
     constructor(private http: HttpClient,private router: Router,private activeRoute: ActivatedRoute){}
