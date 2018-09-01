@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BlogComponent }   from './blog.component';
@@ -9,9 +10,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes =[
-    { path: '', component: AppComponent},
+    { path: '', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: ListComponent},
-    { path: 'blog', component: BlogComponent},
+    { path: 'blog', component: BlogComponent}
 ];
 
 @NgModule({
@@ -22,6 +23,7 @@ const appRoutes: Routes =[
   ],
   imports: [
     BrowserModule, 
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     AgGridModule.withComponents([])

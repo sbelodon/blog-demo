@@ -6,8 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +28,16 @@ public class BlogResource {
     public ResponseEntity<List<BlogItem>> getAll() {
         Map<String, List<BlogItem>> map = new HashMap<>();
         return new ResponseEntity<>(blogDao.getAllBlogItems(), HttpStatus.OK);
+    }
+    @PostMapping(path = "/")
+    public ResponseEntity<BlogItem> add(@RequestBody BlogItem blogItem) {
+       BlogItem savedItem = blogDao.save(blogItem);
+       return new ResponseEntity<BlogItem>(savedItem, HttpStatus.OK);
+    }
+    
+    @PutMapping(path = "/")
+    public ResponseEntity<BlogItem> update(@RequestBody BlogItem blogItem) {
+       blogDao.update(blogItem);
+       return new ResponseEntity<BlogItem>(blogItem, HttpStatus.OK);
     }
 }

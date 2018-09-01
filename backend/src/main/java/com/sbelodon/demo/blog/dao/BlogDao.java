@@ -33,4 +33,29 @@ public class BlogDao {
         Query query = session.createQuery("from BlogItem bi where bi.id=:id").setInteger("id", id);
 		return (BlogItem)query.uniqueResult();
     }
+    
+    @SuppressWarnings("unchecked")
+    public BlogItem save(BlogItem blogItem) {
+    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        Session session = sessionFactory.getCurrentSession();
+        Integer savedId = (Integer)session.save(blogItem);
+        session.flush();
+        return getBlogItemById(savedId);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public void update(BlogItem blogItem) {
+    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        Session session = sessionFactory.getCurrentSession();
+        session.update(blogItem);
+        session.flush();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public BlogItem getBlogItemById(Integer id){
+    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from BlogItem bi where bi.id=:id").setInteger("id", id);
+		return (BlogItem)query.uniqueResult();
+    }
 }
