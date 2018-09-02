@@ -1,29 +1,26 @@
 <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
-	<div>
-	<img  [src]="getImageUrl()"
-			style="width: 100px; height: 100px;" /> 
-		<label for="imageInput"> Image:  <input class="span6" id="imageInput"
-			 type='file' (change)="onSelectFile($event)"></label>
-
-	</div>
-	<div >
-		<label  for="titleInput"> Title: <input  id="titleInput"
-			 type="text" formControlName="title"> </label>
-
-	</div>
-	<div >
-		<label  for="categoryInput"> Category: <input
-			 id="categoryInput" type="text"
-			formControlName="category"> </label>
-
-	</div>
-	<div >
-		<label for="descriptionInput"> Desription:
-		<textarea rows="10" id="descriptionInput"
-			formControlName="description"></textarea> </label>
-
-
-	</div>
-	<button type="submit"
-		[disabled]="!blogForm.valid">Save</button>
+	<img [src]="getImageUrl()" style="width: 100px; height: 100px;" />
+	<table>
+		<tr>
+			<td><label for="imageInput"> Image:</label></td>
+			<td><input class="span6" id="imageInput" type='file'
+				(change)="onSelectFile($event)"></td>
+		</tr>
+		<tr>
+			<td><label for="titleInput"> Title:</label></td>
+			<td><input id="titleInput" type="text" formControlName="title">
+			</td>
+		</tr>
+		<tr>
+			<td><label for="categoryInput"> Category: </label></td>
+			<td><input id="categoryInput" type="text"
+				formControlName="category"></td>
+		</tr>
+		<tr>
+			<td><label for="descriptionInput"> Desription:</label></td>
+			<td><textarea rows="10" id="descriptionInput"
+					formControlName="description"></textarea></td>
+		</tr>
+	</table>
+	<button type="submit" [disabled]="!blogForm.valid">Save</button>
 </form>
