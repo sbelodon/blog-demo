@@ -16,10 +16,10 @@ export class ClickableParentComponent implements ICellRendererAngularComp{
         this.params = params;
         this.cell = {row: params.value, col: params.colDef.headerName};
     }
-    refresh(): boolean {
+     refresh(): boolean {
         return true;
     }
     onDelete(param){
-    	this.http.delete('api/blog/'+param.id).subscribe();
+    	this.http.delete('api/blog/'+param.id).subscribe((a)=>{document.location.reload(false);});	
     }
 }

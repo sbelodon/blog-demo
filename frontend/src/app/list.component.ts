@@ -15,7 +15,7 @@ export class ListComponent {
    		cellRenderer: params => {
        		return '<img src="api/image/'+params.value+'"/>';
     	}},
-        {headerName: 'Title', field: 'title' },
+        {headerName: 'Title', field: 'title', filter: "agTextColumnFilter" },
         {headerName: 'Category', field: 'category' },
         {headerName: 'Description', field: 'description'},
         {headerName: 'Actions', field: 'id',

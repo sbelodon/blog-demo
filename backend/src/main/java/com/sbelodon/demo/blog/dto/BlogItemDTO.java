@@ -14,6 +14,8 @@ public class BlogItemDTO{
 
 	private String image;
 
+	private Integer version;
+	
 	public int getId() {
 		return id;
 	}
@@ -48,6 +50,14 @@ public class BlogItemDTO{
 
 	public String getImage() {
 		return image;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 	public void setImage(String image) {

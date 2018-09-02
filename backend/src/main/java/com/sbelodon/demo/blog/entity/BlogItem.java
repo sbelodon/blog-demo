@@ -32,6 +32,8 @@ public class BlogItem {
     @Lob
     private String description;
 
+    @Column(name = "version")
+    private Integer version;
     public byte[] getImage() {
         return image;
     }
@@ -68,7 +70,15 @@ public class BlogItem {
         this.id = id;
     }
 
-    public void setDescription(String description) {
+    public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public void setDescription(String description) {
         this.description = description;
     }
 

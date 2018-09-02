@@ -55,6 +55,7 @@ public class BlogResource {
 		blogItem.setCategory(blogItemDTO.getCategory());
     	blogItem.setTitle(blogItemDTO.getTitle());
     	blogItem.setDescription(blogItem.getDescription());
+    	blogItem.setVersion(blogItem.getVersion());
 	}
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody BlogItemDTO blogItemDTO) throws IOException {

@@ -20,6 +20,7 @@ export class BlogComponent implements OnInit{
     	title: new FormControl(''),
     	category: new FormControl(''),
     	description: new FormControl(''),
+    	version: new FormControl('')
   	});
  	id:number;
 	url: string;
@@ -56,12 +57,12 @@ export class BlogComponent implements OnInit{
         		this.http.put('api/blog/',this.blogForm.value)
         		.map((res: Response) => res) 
         		.catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-        		.subscribe();
+        		.subscribe((a)=>{alert('Done!');});
         }else{
         		this.http.post('api/blog/',this.blogForm.value)
         		.map((res: Response) => res) 
         		.catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-        		.subscribe((r)=>{this.blogForm.patchValue({id:r});});
+        		.subscribe((r)=>{this.blogForm.patchValue({id:r});alert('Done!');});
         }
         
     }

@@ -1,22 +1,29 @@
-
 <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
-  <label>
-   Image:
-    <img [src]="getImageUrl()" style="width: 100px; height: 100px;"/>
-    <input type='file' (change)="onSelectFile($event)">
-  </label>
-  <label>
-   Title:
-    <input type="text" formControlName="title">
-  </label>
+	<div>
+	<img  [src]="getImageUrl()"
+			style="width: 100px; height: 100px;" /> 
+		<label for="imageInput"> Image:  <input class="span6" id="imageInput"
+			 type='file' (change)="onSelectFile($event)"></label>
 
-  <label>
-    Category:
-    <input type="text" formControlName="category">
-  </label>
-<label>
-   	Desription:
-    <input type="text" formControlName="description">
-  </label>
-  <button type="submit" [disabled]="!blogForm.valid">Save</button>
+	</div>
+	<div >
+		<label  for="titleInput"> Title: <input  id="titleInput"
+			 type="text" formControlName="title"> </label>
+
+	</div>
+	<div >
+		<label  for="categoryInput"> Category: <input
+			 id="categoryInput" type="text"
+			formControlName="category"> </label>
+
+	</div>
+	<div >
+		<label for="descriptionInput"> Desription:
+		<textarea rows="10" id="descriptionInput"
+			formControlName="description"></textarea> </label>
+
+
+	</div>
+	<button type="submit"
+		[disabled]="!blogForm.valid">Save</button>
 </form>

@@ -6,10 +6,10 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 	<property name="blob_type" value="bytea" dbms="postgresql" />
 	<property name="blob_type" value="blob" dbms="oracle" />
-	<changeSet id="bog_item_seq" author="sbelodon">
+	<changeSet id="blog_item_seq" author="sbelodon">
 		<createSequence sequenceName="BLOG_ITEM_SEQ" />
 	</changeSet>
-	<changeSet id="bog_item" author="sbelodon">
+	<changeSet id="blog_item" author="sbelodon">
 		<createTable tableName="BLOG_ITEM">
 			<column name="blog_item_id" type="INTEGER" />
 			<column name="image" type="${blob_type}" />
@@ -18,5 +18,10 @@
 			<column name="description" type="TEXT" />
 		</createTable>
 		<addPrimaryKey tableName="BLOG_ITEM" columnNames="blog_item_id" />
+	</changeSet>
+	<changeSet id="blog_item_version" author="sbelodon">
+	<addColumn tableName="BLOG_ITEM">
+		<column name="version" type="INTEGER"/>
+	</addColumn>
 	</changeSet>
 </databaseChangeLog>
