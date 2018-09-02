@@ -1,5 +1,7 @@
 package com.sbelodon.demo.blog.api;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sbelodon.demo.blog.dao.BlogDao;
+import com.sbelodon.demo.blog.dto.BlogItemDTO;
 import com.sbelodon.demo.blog.entity.BlogItem;
 
 @RestController
@@ -36,12 +41,31 @@ public class BlogResource {
         return new ResponseEntity<>(blogDao.getAllBlogItems(), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<Integer> add(@RequestBody BlogItem blogItem) {
+    public ResponseEntity<Integer> add(@RequestBody BlogItemDTO blogItemDTO) throws IOException {
+    	BlogItem blogItem=new BlogItem();
+    	setFields(blogItemDTO, blogItem);
+    	if(blogItemDTO.getImage() != null) {
+    		blogItem.setImage(Base64.getDecoder().decode(blogItemDTO.getImage()));
+    	}
        Integer savedId = blogDao.save(blogItem);
        return new ResponseEntity<Integer>(savedId, HttpStatus.OK);
     }
+
+	private void setFields(BlogItemDTO blogItemDTO, BlogItem blogItem) {
+		blogItem.setCategory(blogItemDTO.getCategory());
+    	blogItem.setTitle(blogItemDTO.getTitle());
+    	blogItem.setDescription(blogItem.getDescription());
+	}
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody BlogItem blogItem) {
+    public ResponseEntity<Void> update(@RequestBody BlogItemDTO blogItemDTO) throws IOException {
+    	BlogItem blogItem=new BlogItem();
+    	blogItem.setId(blogItemDTO.getId());
+    	setFields(blogItemDTO, blogItem);
+    	if(blogItemDTO.getImage() != null) {
+    		blogItem.setImage(Base64.getDecoder().decode(blogItemDTO.getImage()));
+    	}else {
+    		blogItem.setImage(blogDao.getBlogItemImageByBlogId(blogItemDTO.getId()).getImage());
+    	}
     	blogDao.update(blogItem);
        return new ResponseEntity<Void>(HttpStatus.OK);
     }

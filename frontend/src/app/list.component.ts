@@ -29,7 +29,6 @@ export class ListComponent {
 
     }
 
-	
     ngOnInit() {
         this.rowData = this.http.get('api/blog/');
     }

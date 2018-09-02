@@ -1,4 +1,10 @@
+
 <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+  <label>
+   Image:
+    <img [src]="getImageUrl()" style="width: 100px; height: 100px;"/>
+    <input type='file' (change)="onSelectFile($event)">
+  </label>
   <label>
    Title:
     <input type="text" formControlName="title">

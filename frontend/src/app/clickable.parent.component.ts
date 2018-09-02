@@ -17,7 +17,7 @@ export class ClickableParentComponent implements ICellRendererAngularComp{
         this.cell = {row: params.value, col: params.colDef.headerName};
     }
     refresh(): boolean {
-        return false;
+        return true;
     }
     onDelete(param){
     	this.http.delete('api/blog/'+param.id).subscribe();
