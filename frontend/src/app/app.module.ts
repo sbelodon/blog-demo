@@ -31,6 +31,6 @@ const appRoutes: Routes =[
     AgGridModule.withComponents([ClickableParentComponent])
   ],
   providers: [],
-  bootstrap: [AppComponent,BlogComponent,ListComponent, ClickableParentComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
