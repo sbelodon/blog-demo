@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import { Response} from '@angular/http';
 import { BlogItem} from './blogItem';
-import { Observable} from 'rxjs/Rx'
+import { Observable} from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';

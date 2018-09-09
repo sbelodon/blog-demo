@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule} from '@angular/router';
 import { ClickableParentComponent } from "./clickable.parent.component";
-
+import {GridOptions } from "ag-grid";
 @Component({
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
   title = 'list';
-  
+
    columnDefs = [
    		{headerName: 'Image', field: 'id',
    		cellRenderer: params => {
@@ -23,13 +23,22 @@ export class ListComponent {
    		}
     ];
 
-    rowData: any;
+   gridOptions = <GridOptions>{
+   		columnDefs: this.columnDefs,
+    	enableFilter: true
+  };
 
     constructor(private http: HttpClient,private router:Router) {
 
     }
 
-    ngOnInit() {
-        this.rowData = this.http.get('api/blog/');
+     ngOnInit() {
+    	this.http.get('api/blog/')
+    	.subscribe(
+        	(rowData:any[])=>{
+        		this.gridOptions.api.setRowData(rowData);
+        		this.gridOptions.api.sizeColumnsToFit();
+        	}
+        );
     }
 }

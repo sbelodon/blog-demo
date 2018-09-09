@@ -55,11 +55,12 @@ public class BlogDao {
 		return (BlogItem)query.uniqueResult();
     }
     
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
     	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete BlogItem bi where bi.id=:id").setInteger("id", id);
-        query.executeUpdate();
-        session.flush();    	
+        int updatedItemsCount = query.executeUpdate();
+        session.flush();  
+        return updatedItemsCount;
     }
 }

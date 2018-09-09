@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.core.JsonFactory;
 import com.sbelodon.demo.blog.dao.BlogDao;
 import com.sbelodon.demo.blog.dto.BlogItemDTO;
 import com.sbelodon.demo.blog.entity.BlogItem;
@@ -41,6 +44,7 @@ public class BlogResource {
         return new ResponseEntity<>(blogDao.getAllBlogItems(), HttpStatus.OK);
     }
     @PostMapping
+    @ResponseBody
     public ResponseEntity<Integer> add(@RequestBody BlogItemDTO blogItemDTO) throws IOException {
     	BlogItem blogItem=new BlogItem();
     	setFields(blogItemDTO, blogItem);
@@ -54,11 +58,12 @@ public class BlogResource {
 	private void setFields(BlogItemDTO blogItemDTO, BlogItem blogItem) {
 		blogItem.setCategory(blogItemDTO.getCategory());
     	blogItem.setTitle(blogItemDTO.getTitle());
-    	blogItem.setDescription(blogItem.getDescription());
-    	blogItem.setVersion(blogItem.getVersion());
+    	blogItem.setDescription(blogItemDTO.getDescription());
+    	blogItem.setVersion(blogItemDTO.getVersion());
 	}
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody BlogItemDTO blogItemDTO) throws IOException {
+    @ResponseBody
+    public ResponseEntity<Integer> update(@RequestBody BlogItemDTO blogItemDTO) throws IOException {
     	BlogItem blogItem=new BlogItem();
     	blogItem.setId(blogItemDTO.getId());
     	setFields(blogItemDTO, blogItem);
@@ -68,11 +73,12 @@ public class BlogResource {
     		blogItem.setImage(blogDao.getBlogItemImageByBlogId(blogItemDTO.getId()).getImage());
     	}
     	blogDao.update(blogItem);
-       return new ResponseEntity<Void>(HttpStatus.OK);
+       return new ResponseEntity<Integer>(0,HttpStatus.OK);
     }
-    @DeleteMapping(path="/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id")Integer id) {
-    	blogDao.delete(id);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+	@DeleteMapping(path="/{id}")
+	@ResponseBody
+    public ResponseEntity<Integer> delete(@PathVariable("id")Integer id) {
+    	Integer updatedCount=blogDao.delete(id);
+    	return new ResponseEntity<Integer>(updatedCount,HttpStatus.OK);
     }
 }
