@@ -13,54 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sbelodon.demo.blog.entity.BlogItem;
 
-@Repository
-@Transactional
-public class BlogDao {
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
+
+public interface BlogDao {
+
+    public List<BlogItem> getAllBlogItems();
     
-    @SuppressWarnings("unchecked")
-    public List<BlogItem> getAllBlogItems(){
-        SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        Session session = sessionFactory.getCurrentSession();
-        return (List<BlogItem>) session.createQuery("from BlogItem").list();
-    }
+    public BlogItem getBlogItemImageByBlogId(Integer id);
     
-    public BlogItem getBlogItemImageByBlogId(Integer id){
-    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from BlogItem bi where bi.id=:id").setInteger("id", id);
-		return (BlogItem)query.uniqueResult();
-    }
+    public Integer save(BlogItem blogItem);
     
-    public Integer save(BlogItem blogItem) {
-    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        Session session = sessionFactory.getCurrentSession();
-        Integer savedId = (Integer)session.save(blogItem);
-        session.flush();
-        return savedId;
-    }
+    public void update(BlogItem blogItem) ;
     
-    public void update(BlogItem blogItem) {
-    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        Session session = sessionFactory.getCurrentSession();
-        session.update(blogItem);
-        session.flush();
-    }
+    public BlogItem getBlogItemById(Integer id);
     
-    public BlogItem getBlogItemById(Integer id){
-    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from BlogItem bi where bi.id=:id").setInteger("id", id);
-		return (BlogItem)query.uniqueResult();
-    }
-    
-    public Integer delete(Integer id) {
-    	SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("delete BlogItem bi where bi.id=:id").setInteger("id", id);
-        int updatedItemsCount = query.executeUpdate();
-        session.flush();  
-        return updatedItemsCount;
-    }
+    public Integer delete(Integer id);
 }
