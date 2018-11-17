@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "frontend": {
+      "root": "src",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "targets": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "main": "src/main.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.json",
+            "polyfills": "src/polyfills.ts",
+            "outputPath": "ui-src/META-INF/resources",
+            "buildOptimizer": false,
+            "assets": [
+              "src/assets",
+              "src/favicon.ico"
+            ],
+            "styles": [
+              "src/styles.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-blue.css"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "frontend"
+}

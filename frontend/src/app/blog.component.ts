@@ -23,7 +23,7 @@ export class BlogComponent implements OnInit{
     	version: new FormControl('')
   	});
  	id:number;
-	url: string;
+	url:string;
 	
     constructor(private http: HttpClient,private router: Router,private activeRoute: ActivatedRoute){}
       
@@ -47,8 +47,8 @@ export class BlogComponent implements OnInit{
      		console.log('file: '+event.target.files[0]);
       		dataUrlreader.readAsDataURL(event.target.files[0]); // read file as data url
      		dataUrlreader.onload = (event) => { // called once readAsDataURL is completed
-       			this.url = dataUrlreader.result;
-       			this.blogForm.patchValue({image:dataUrlreader.result.substr(dataUrlreader.result.indexOf(',') + 1)})
+       			this.url = <string> dataUrlreader.result;
+       			this.blogForm.patchValue({image:this.url.substr(this.url.indexOf(',') + 1)})
      		}
     }
 }
