@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule} from '@angular/router';
 import { ClickableParentComponent } from "./clickable.parent.component";
-import {GridOptions } from "ag-grid";
+import {GridOptions } from "ag-grid-community";
 @Component({
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']

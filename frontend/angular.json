@@ -25,8 +25,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/ag-grid/dist/styles/ag-grid.css",
-              "node_modules/ag-grid/dist/styles/ag-theme-blue.css"
+              "node_modules/ag-grid-community/dist/styles/ag-grid.css",
+              "node_modules/ag-grid-community/dist/styles/ag-theme-blue.css"
             ]
           }
         }
