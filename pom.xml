@@ -84,6 +84,7 @@
                 <activatedProperties>prod</activatedProperties>
                 <database.driverClassName>org.postgresql.Driver</database.driverClassName>
                 <database.jdbc-jar-name>jdbc-driver-postgres.jar</database.jdbc-jar-name>
+                <!--suppress UnresolvedMavenProperty -->
                 <database.url>${JDBC_DATABASE_URL}</database.url>
             </properties>
             <activation>
