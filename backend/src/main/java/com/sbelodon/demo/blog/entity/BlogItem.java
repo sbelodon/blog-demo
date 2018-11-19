@@ -1,5 +1,7 @@
 package com.sbelodon.demo.blog.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,8 @@ public class BlogItem {
     private int id;
 
     @Column(name = "image")
-    @Lob
+    //@Lob
+    @Type(type="org.hibernate.type.BinaryType")
     private byte[] image;
 
     @Column(name = "category")
