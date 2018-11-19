@@ -1,0 +1,2 @@
+web: java $JAVA_OPTS -jar backend/target/blog-demo-app.jar --server.port=$PORT $JAR_OPTS
+release: java -jar backend/target/dependency/liquibase.jar --defaultsFile=backend/target/classes/liquibase.properties update

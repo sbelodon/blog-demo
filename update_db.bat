@@ -1,0 +1,1 @@
+java -jar backend\target\dependency\liquibase.jar --defaultsFile="backend/target/classes/liquibase.properties" update
