@@ -15,8 +15,8 @@ import javax.persistence.Table;
 @Table(name = "BLOG_ITEM")
 public class BlogItem {
     @Id
-    @SequenceGenerator(name = "blogItemSeq",sequenceName="BLOG_ITEM_SEQ")
-    @GeneratedValue(generator="blogItemSeq")
+    @SequenceGenerator(name = "blogItemSeq", sequenceName = "BLOG_ITEM_SEQ")
+    @GeneratedValue(generator = "blogItemSeq")
     @Column(name = "blog_item_id")
     private int id;
 
@@ -36,6 +36,10 @@ public class BlogItem {
 
     @Column(name = "version")
     private Integer version;
+
+    @Column(name = "user_id")
+    private String userId;
+
     public byte[] getImage() {
         return image;
     }
@@ -73,15 +77,22 @@ public class BlogItem {
     }
 
     public Integer getVersion() {
-		return version;
-	}
+        return version;
+    }
 
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
-	public void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

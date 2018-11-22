@@ -7,7 +7,8 @@ import { Observable} from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-  
+import {AppComponent} from './app.component';
+
 @Component({
     templateUrl: './blog.component.html',
   	styleUrls: ['./blog.component.css']
@@ -20,19 +21,20 @@ export class BlogComponent implements OnInit{
     	title: new FormControl(''),
     	category: new FormControl(''),
     	description: new FormControl(''),
-    	version: new FormControl('')
+    	version: new FormControl(''),
+    	userId: new FormControl('')
   	});
  	id:number;
 	url:string;
 	
-    constructor(private http: HttpClient,private router: Router,private activeRoute: ActivatedRoute){}
+    constructor(private http: HttpClient,private router: Router,private activeRoute: ActivatedRoute,private appComponent:AppComponent){}
       
     ngOnInit(){
     	this.id = this.activeRoute.snapshot.queryParams["id"];
     	if(this.id){
     		this.http.get('api/blog/'+this.id).subscribe((val)=>this.blogForm.setValue(val));
     	}else{
-    		this.blogForm.setValue(<BlogItem>{});
+    		this.blogForm.patchValue({userId:this.appComponent.getUserId()});
     	}
     }
     getImageUrl(){

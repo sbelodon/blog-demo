@@ -2166,6 +2166,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
 
+guid-typescript@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/guid-typescript/-/guid-typescript-1.0.9.tgz#e35f77003535b0297ea08548f5ace6adb1480ddc"
+
 handle-thing@^1.2.5:
   version "1.2.5"
   resolved "http://registry.npmjs.org/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
@@ -3309,6 +3313,10 @@ negotiator@0.6.1:
 neo-async@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
+
+ngx-cookie-service@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-2.0.0.tgz#ef1cd3d97d9ffc354de6113b08d29d879d257533"
 
 nice-try@^1.0.4:
   version "1.0.5"

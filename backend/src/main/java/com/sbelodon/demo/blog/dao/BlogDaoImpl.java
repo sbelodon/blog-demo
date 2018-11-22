@@ -18,10 +18,10 @@ public class BlogDaoImpl implements BlogDao {
     private EntityManagerFactory entityManagerFactory;
 
     @SuppressWarnings("unchecked")
-    public List<BlogItem> getAllBlogItems() {
+    public List<BlogItem> getAllBlogItems(String userId) {
         SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         Session session = sessionFactory.getCurrentSession();
-        return (List<BlogItem>) session.createQuery("from BlogItem").list();
+        return (List<BlogItem>) session.createQuery("from BlogItem where userId=:userId").setString("userId",userId).list();
     }
 
     public BlogItem getBlogItemImageByBlogId(Integer id) {

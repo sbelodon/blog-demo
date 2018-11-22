@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +11,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private http: HttpClient,private router:Router){}
+  userIdCookieName = 'userId';
+
+  constructor(private http: HttpClient,private router:Router,private cookieService: CookieService){
+          if(!this.cookieService.check(this.userIdCookieName)){
+              this.cookieService.set( this.userIdCookieName, Guid.create().toString() );
+          }
+  }
+
+  getUserId(){
+    return this.cookieService.get(this.userIdCookieName);
+  }
 }

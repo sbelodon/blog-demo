@@ -9,6 +9,7 @@ import { ListComponent }   from './list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ClickableParentComponent } from "./clickable.parent.component";
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes: Routes =[
     { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -30,7 +31,7 @@ const appRoutes: Routes =[
     HttpClientModule,
     AgGridModule.withComponents([ClickableParentComponent])
   ],
-  providers: [],
+  providers: [CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

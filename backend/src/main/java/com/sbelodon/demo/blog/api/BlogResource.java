@@ -40,8 +40,8 @@ public class BlogResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<BlogItem>> getAll() {
-        return new ResponseEntity<>(blogDao.getAllBlogItems(), HttpStatus.OK);
+    public ResponseEntity<List<BlogItem>> getAll(@RequestParam String userId) {
+        return new ResponseEntity<>(blogDao.getAllBlogItems(userId), HttpStatus.OK);
     }
     @PostMapping
     @ResponseBody
@@ -60,6 +60,7 @@ public class BlogResource {
     	blogItem.setTitle(blogItemDTO.getTitle());
     	blogItem.setDescription(blogItemDTO.getDescription());
     	blogItem.setVersion(blogItemDTO.getVersion());
+    	blogItem.setUserId(blogItemDTO.getUserId());
 	}
     @PutMapping
     @ResponseBody

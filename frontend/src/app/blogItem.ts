@@ -3,4 +3,5 @@ export class BlogItem{
     category:string;
     title:string;
     description:string;
+    userId:string;
 }

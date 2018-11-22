@@ -22,7 +22,9 @@
     "rxjs-compat": "6.0.0",
     "zone.js": "0.8.26",
     "ag-grid-community": "19.1.2",
-    "ag-grid-angular":"19.1.2"
+    "ag-grid-angular":"19.1.2",
+    "ngx-cookie-service":"2.0.0",
+    "guid-typescript":"1.0.9"
   },
   "devDependencies": {
     "@angular/cli": "7.0.6",

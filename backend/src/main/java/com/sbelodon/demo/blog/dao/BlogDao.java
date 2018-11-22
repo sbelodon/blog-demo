@@ -16,7 +16,7 @@ import com.sbelodon.demo.blog.entity.BlogItem;
 
 public interface BlogDao {
 
-    public List<BlogItem> getAllBlogItems();
+    public List<BlogItem> getAllBlogItems(String userId);
     
     public BlogItem getBlogItemImageByBlogId(Integer id);
     
