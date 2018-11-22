@@ -4,6 +4,8 @@ This is blog project for demonstration. You can add,edit or delete blogs and see
 
 Project based on Angular 7.0.4 , Spring Boot 1.5.9, connects to Oracle DB
 
+To test project visit https://bold-cat.herokuapp.com
+
 To setup project you need:
 
 1. install maven
