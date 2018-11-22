@@ -94,7 +94,6 @@
                             <artifactId>jdbc-driver</artifactId>
                             <version>8.0</version>
                             <packaging>jar</packaging>
-                            <createChecksum>true</createChecksum>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
@@ -136,7 +135,9 @@
                     </changeLogFile>
                     <driver>${database.driverClassName}</driver>
                     <url>${database.url}</url>
+                    <!--suppress UnresolvedMavenProperty -->
                     <username>${database.user}</username>
+                    <!--suppress UnresolvedMavenProperty -->
                     <password>${database.password}</password>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
