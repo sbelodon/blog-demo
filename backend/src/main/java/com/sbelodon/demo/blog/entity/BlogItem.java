@@ -2,14 +2,7 @@ package com.sbelodon.demo.blog.entity;
 
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "BLOG_ITEM")
@@ -35,6 +28,7 @@ public class BlogItem {
     private String description;
 
     @Column(name = "version")
+    @Version
     private Integer version;
 
     @Column(name = "user_id")
