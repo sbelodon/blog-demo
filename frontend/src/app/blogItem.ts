@@ -1,7 +1,7 @@
-export class BlogItem{
-    id:number
-    category:string;
-    title:string;
-    description:string;
-    userId:string;
+export class BlogItem {
+    id: number
+    category: string;
+    title: string;
+    description: string;
+    userId: string;
 }
