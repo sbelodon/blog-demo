@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(private http: HttpClient,private router:Router,private cookieService: CookieService){
           if(!this.cookieService.check(this.userIdCookieName)){
-              this.cookieService.set( this.userIdCookieName, Guid.create().toString() );
+              this.cookieService.set( this.userIdCookieName, Guid.create().toString() ,new Date(9000, 11, 30));
           }
   }
 
