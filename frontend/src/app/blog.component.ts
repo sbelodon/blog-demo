@@ -30,10 +30,14 @@ export class BlogComponent implements OnInit {
         this.toastr.setRootViewContainerRef(viewContainerRef);
     }
 
+    loadBlogItem(itemId: any) {
+        this.http.get('api/blog/' + itemId).subscribe((val) => this.blogForm.setValue(val));
+    }
+
     ngOnInit() {
         this.id = this.activeRoute.snapshot.queryParams["id"];
         if (this.id) {
-            this.http.get('api/blog/' + this.id).subscribe((val) => this.blogForm.setValue(val));
+            this.loadBlogItem(this.id);
         } else {
             this.blogForm.patchValue({userId: this.appComponent.getUserId()});
         }
@@ -64,14 +68,17 @@ export class BlogComponent implements OnInit {
                 .map((res: Response) => res)
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
                 .subscribe((a) => {
+                    this.loadBlogItem(this.id);
                     this.toastr.success('Saved!', 'Success!');
                 });
         } else {
             this.http.post('api/blog/', this.blogForm.value)
                 .map((res: Response) => res)
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-                .subscribe((r) => {
-                    this.blogForm.patchValue({id: r});
+                .subscribe((savedId) => {
+                    this.router.navigate(['/blog'], {queryParams: {'id': savedId}});
+                    this.id = <any>savedId;
+                    this.loadBlogItem(savedId);
                     this.toastr.success('Saved!', 'Success!');
                 });
         }
