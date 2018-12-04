@@ -1,13 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Response} from '@angular/http';
-import {BlogItem} from './blogItem';
 import {Observable} from 'rxjs/Rx';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import {FormGroup, FormControl} from '@angular/forms';
 import {AppComponent} from './app.component';
+import {ToastsManager} from 'ng6-toastr/ng2-toastr';
 
 @Component({
     templateUrl: './blog.component.html',
@@ -27,7 +26,8 @@ export class BlogComponent implements OnInit {
     id: number;
     url: string;
 
-    constructor(private http: HttpClient, private router: Router, private activeRoute: ActivatedRoute, private appComponent: AppComponent) {
+    constructor(private http: HttpClient, private router: Router, private activeRoute: ActivatedRoute, private appComponent: AppComponent, public toastr: ToastsManager, viewContainerRef: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(viewContainerRef);
     }
 
     ngOnInit() {
@@ -64,7 +64,7 @@ export class BlogComponent implements OnInit {
                 .map((res: Response) => res)
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
                 .subscribe((a) => {
-                    alert('Done!');
+                    this.toastr.success('Saved!', 'Success!');
                 });
         } else {
             this.http.post('api/blog/', this.blogForm.value)
@@ -72,7 +72,7 @@ export class BlogComponent implements OnInit {
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
                 .subscribe((r) => {
                     this.blogForm.patchValue({id: r});
-                    alert('Done!');
+                    this.toastr.success('Saved!', 'Success!');
                 });
         }
 

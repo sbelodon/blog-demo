@@ -3314,6 +3314,10 @@ neo-async@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
 
+ng6-toastr@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ng6-toastr/-/ng6-toastr-6.0.0.tgz#9bf28e723e5ed2c4e01ba783a60f46a3b78656b2"
+
 ngx-cookie-service@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-2.0.0.tgz#ef1cd3d97d9ffc354de6113b08d29d879d257533"

@@ -10,6 +10,8 @@ import {AgGridModule} from 'ag-grid-angular';
 import {HttpClientModule} from '@angular/common/http';
 import {ClickableParentComponent} from "./clickable.parent.component";
 import {CookieService} from 'ngx-cookie-service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastModule} from 'ng6-toastr/ng2-toastr';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'list', pathMatch: 'full'},
@@ -26,6 +28,8 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
+        ToastModule.forRoot(),
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes, {useHash: true}),
         HttpClientModule,
