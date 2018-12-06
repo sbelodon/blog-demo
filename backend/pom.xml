@@ -60,6 +60,12 @@
             <scope>system</scope>
             <systemPath>${project.basedir}${database.source-jdbc-jar-path}</systemPath>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.jdbc-driver.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -177,6 +183,12 @@
                                     <artifactId>jdbc-driver</artifactId>
                                     <version>8.0</version>
                                     <destFileName>jdbc-driver-oracle.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>mysql</groupId>
+                                    <artifactId>mysql-connector-java</artifactId>
+                                    <version>${mysql.jdbc-driver.version}</version>
+                                    <destFileName>jdbc-driver-mysql.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>

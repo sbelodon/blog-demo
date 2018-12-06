@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<databaseChangeLog logicalFilePath ="changelog.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+<databaseChangeLog logicalFilePath="changelog.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-	<property name="blob_type" value="bytea" dbms="postgresql" />
-	<property name="blob_type" value="blob" dbms="oracle" />
-	<changeSet id="blog_item_seq" author="sbelodon">
-		<createSequence sequenceName="BLOG_ITEM_SEQ" />
-	</changeSet>
-	<changeSet id="blog_item" author="sbelodon">
-		<createTable tableName="BLOG_ITEM">
-			<column name="blog_item_id" type="INTEGER" />
-			<column name="image" type="${blob_type}" />
-			<column name="category" type="VARCHAR(100)" />
-			<column name="title" type="VARCHAR(256)" />
-			<column name="description" type="TEXT" />
-		</createTable>
-		<addPrimaryKey tableName="BLOG_ITEM" columnNames="blog_item_id" />
-	</changeSet>
-	<changeSet id="blog_item_version" author="sbelodon">
-	<addColumn tableName="BLOG_ITEM">
-		<column name="version" type="INTEGER"/>
-	</addColumn>
-	</changeSet>
-	<changeSet id="add_user_id_to_blog_item" author="sbelodon">
-		<addColumn tableName="BLOG_ITEM">
-			<column name="user_id" type="VARCHAR(36)"/>
-		</addColumn>
-	</changeSet>
+    <property name="blob_type" value="bytea" dbms="postgresql"/>
+    <property name="blob_type" value="blob" dbms="oracle"/>
+    <property name="blob_type" value="longblob" dbms="mysql"/>
+
+    <changeSet id="id_table" author="sbelodon">
+        <createTable tableName="ID_TABLE">
+            <column name="pk" type="VARCHAR(255)"/>
+            <column name="value" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="blog_item" author="sbelodon">
+        <createTable tableName="BLOG_ITEM">
+            <column name="blog_item_id" type="INTEGER"/>
+            <column name="image" type="${blob_type}"/>
+            <column name="category" type="VARCHAR(100)"/>
+            <column name="title" type="VARCHAR(256)"/>
+            <column name="description" type="TEXT"/>
+        </createTable>
+        <addPrimaryKey tableName="BLOG_ITEM" columnNames="blog_item_id"/>
+    </changeSet>
+    <changeSet id="blog_item_version" author="sbelodon">
+        <addColumn tableName="BLOG_ITEM">
+            <column name="version" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_user_id_to_blog_item" author="sbelodon">
+        <addColumn tableName="BLOG_ITEM">
+            <column name="user_id" type="VARCHAR(36)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

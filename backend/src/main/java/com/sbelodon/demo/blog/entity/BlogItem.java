@@ -8,8 +8,13 @@ import javax.persistence.*;
 @Table(name = "BLOG_ITEM")
 public class BlogItem {
     @Id
-    @SequenceGenerator(name = "blogItemSeq", sequenceName = "BLOG_ITEM_SEQ")
-    @GeneratedValue(generator = "blogItemSeq")
+    @TableGenerator(
+            name = "blogItemGenerator",
+            table = "ID_TABLE",
+            pkColumnName = "pk",
+            valueColumnName = "value",
+            pkColumnValue = "blogItem")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "blogItemGenerator")
     @Column(name = "blog_item_id")
     private int id;
 

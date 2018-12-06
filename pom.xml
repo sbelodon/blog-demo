@@ -25,6 +25,7 @@
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <liquibase.version>3.4.1</liquibase.version>
         <postgres.jdbc-driver.version>9.4-1204-jdbc41</postgres.jdbc-driver.version>
+        <mysql.jdbc-driver.version>8.0.13</mysql.jdbc-driver.version>
         <database.source-jdbc-jar-path>/lib/ojdbc8.jar</database.source-jdbc-jar-path>
     </properties>
     <modules>
@@ -87,6 +88,17 @@
                 <database.url>jdbc:postgresql://localhost:5432/demo-blog</database.url>
                 <database.user>postgres</database.user>
                 <database.password>pswpostgres888</database.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev-mysql</id>
+            <properties>
+                <activatedProperties>dev-mysql</activatedProperties>
+                <database.driverClassName>com.mysql.cj.jdbc.Driver</database.driverClassName>
+                <database.jdbc-jar-name>jdbc-driver-mysql.jar</database.jdbc-jar-name>
+                <database.url>jdbc:mysql://localhost:3306/demo-blog?serverTimezone=UTC</database.url>
+                <database.user>root</database.user>
+                <database.password>mysql_2012Z</database.password>
             </properties>
         </profile>
         <profile>
