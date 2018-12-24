@@ -15,6 +15,7 @@ To setup project you need:
 5. go to backend module and run mvn liquibase:update
 6. go to main project dir 
 7. run yarn install --network-timeout 1000000
-8. run mvn clean package -P dev
-9. go to backend\target folder and run java -jar blog-demo-app.jar
-10. open project in browser: type http://localhost:8080
+8. run ng build
+9. run mvn clean package -P dev
+10. go to backend\target folder and run java -jar blog-demo-app.jar
+11. open project in browser: type http://localhost:8080
