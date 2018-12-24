@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "frontend": {
-      "root": "src",
-      "sourceRoot": "src",
+      "root": "frontend/src",
+      "sourceRoot": "frontend/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -13,19 +13,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "main": "src/main.ts",
-            "index": "src/index.html",
-            "tsConfig": "tsconfig.json",
-            "polyfills": "src/polyfills.ts",
-            "outputPath": "ui-src/META-INF/resources",
+            "main": "frontend/src/main.ts",
+            "index": "frontend/src/index.html",
+            "tsConfig": "frontend/tsconfig.json",
+            "polyfills": "frontend/src/polyfills.ts",
+            "outputPath": "frontend/ui-src/META-INF/resources",
             "buildOptimizer": false,
             "sourceMap": false,
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "frontend/src/assets",
+              "frontend/src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css",
+              "frontend/src/styles.css",
               "node_modules/ag-grid-community/dist/styles/ag-grid.css",
               "node_modules/ag-grid-community/dist/styles/ag-theme-blue.css",
               "node_modules/ng6-toastr/bundles/ng2-toastr.min.css"
