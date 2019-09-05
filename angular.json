@@ -9,17 +9,15 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
-      "targets": {
+      "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "outputPath": "frontend/ui-src/META-INF/resources",
             "main": "frontend/src/main.ts",
             "index": "frontend/src/index.html",
             "tsConfig": "frontend/tsconfig.json",
             "polyfills": "frontend/src/polyfills.ts",
-            "outputPath": "frontend/ui-src/META-INF/resources",
-            "buildOptimizer": false,
-            "sourceMap": false,
             "assets": [
               "frontend/src/assets",
               "frontend/src/favicon.ico"
@@ -32,8 +30,8 @@
             ]
           }
         }
+        }
       }
-    }
-  },
+    },
   "defaultProject": "frontend"
 }
