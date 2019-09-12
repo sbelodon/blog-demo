@@ -1,26 +1,27 @@
-<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
-	<img [src]="getImageUrl()" style="width: 100px; height: 100px;" />
-	<table>
-		<tr>
-			<td><label for="imageInput"> Image:</label></td>
-			<td><input class="span6" id="imageInput" type='file'
-				(change)="onSelectFile($event)"></td>
-		</tr>
-		<tr>
-			<td><label for="titleInput"> Title:</label></td>
-			<td><input id="titleInput" type="text" formControlName="title">
-			</td>
-		</tr>
-		<tr>
-			<td><label for="categoryInput"> Category: </label></td>
-			<td><input id="categoryInput" type="text"
-				formControlName="category"></td>
-		</tr>
-		<tr>
-			<td><label for="descriptionInput"> Desription:</label></td>
-			<td><textarea rows="10" id="descriptionInput"
-					formControlName="description"></textarea></td>
-		</tr>
-	</table>
-	<button type="submit" [disabled]="!blogForm.valid">Save</button>
-</form>
+<div class="container">
+   <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <img *ngIf="getImageUrl()" [src]="getImageUrl()" style="width: 100px; height: 100px;"/>
+        </div>
+        <div class="form-group">
+            <label for="imageInput"> Image:</label>
+            <input class="form-control" id="imageInput" type='file'
+                   (change)="onSelectFile($event)">
+        </div>
+        <div class="form-group">
+            <label for="titleInput"> Title:</label>
+            <input id="titleInput" type="text" class="form-control" formControlName="title">
+        </div>
+        <div class="form-group">
+            <label for="categoryInput"> Category: </label>
+            <input id="categoryInput" type="text" class="form-control"
+                   formControlName="category">
+        </div>
+        <div class="form-group">
+            <label for="descriptionInput"> Desription:</label>
+            <textarea rows="10" id="descriptionInput" class="form-control"
+                      formControlName="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!blogForm.valid">Save</button>
+    </form>
+</div>

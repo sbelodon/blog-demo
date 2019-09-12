@@ -47,7 +47,12 @@ export class BlogComponent implements OnInit {
         if (this.url) {
             return this.url;
         }
-        return 'api/image/' + this.blogForm.value.id;
+
+        let id = this.blogForm.value.id;
+        if(id) {
+            return 'api/image/' + id;
+        }
+        return undefined;
     }
 
     onSelectFile(event) {
