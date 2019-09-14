@@ -1,4 +1,5 @@
 <div class="container">
+   <a [routerLink]="['/list']">List</a>
    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <img *ngIf="getImageUrl()" [src]="getImageUrl()" style="width: 100px; height: 100px;"/>
