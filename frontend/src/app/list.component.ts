@@ -15,16 +15,33 @@ export class ListComponent {
 
     columnDefs = [
         {
-            headerName: 'Image', field: 'id',
+            autoHeight: true,
+            headerName: 'Image',
+            field: 'id',
             cellRenderer: params => {
                 return '<img src="api/image/' + params.value + '"/>';
             }
         },
-        {headerName: 'Title', field: 'title', filter: "agTextColumnFilter"},
-        {headerName: 'Category', field: 'category'},
-        {headerName: 'Description', field: 'description'},
         {
-            headerName: 'Actions', field: 'id',
+            autoHeight: true,
+            headerName: 'Title',
+            field: 'title',
+            filter: "agTextColumnFilter"
+        },
+        {
+            autoHeight: true,
+            headerName: 'Category',
+            field: 'category'
+        },
+        {
+            autoHeight: true,
+            headerName: 'Description',
+            field: 'description'
+        },
+        {
+            autoHeight: true,
+            headerName: 'Actions',
+            field: 'id',
             cellRendererFramework: ClickableParentComponent
         }
     ];
