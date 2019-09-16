@@ -5,6 +5,7 @@ import {ClickableParentComponent} from "./clickable.parent.component";
 import {GridOptions} from "ag-grid-community";
 import {CookieService} from 'ngx-cookie-service';
 import {AppComponent} from './app.component';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
     templateUrl: './list.component.html',
@@ -51,16 +52,23 @@ export class ListComponent {
         enableFilter: true
     };
 
-    constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private appComponent: AppComponent) {
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private cookieService: CookieService,
+        private appComponent: AppComponent,
+        private spinner: NgxSpinnerService) {
 
     }
 
     ngOnInit() {
+        this.spinner.show();
         this.http.get('api/blog/', {params: {userId: this.appComponent.getUserId()}})
             .subscribe(
                 (rowData: any[]) => {
                     this.gridOptions.api.setRowData(rowData);
                     this.gridOptions.api.sizeColumnsToFit();
+                    this.spinner.hide();
                 }
             );
     }

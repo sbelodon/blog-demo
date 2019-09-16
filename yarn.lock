@@ -4264,6 +4264,13 @@ ngx-cookie-service@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-2.0.0.tgz#ef1cd3d97d9ffc354de6113b08d29d879d257533"
 
+ngx-spinner@8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/ngx-spinner/-/ngx-spinner-8.0.3.tgz#6f61075bdbe78896ec0d602eacc8694ffe78690b"
+  integrity sha512-2yiNDqY8jMSjRgYZEb6ubeOpvE2vzRndoPXj0FRINVjfuBioy501t+VwA99SKNbSHwVDa2plEuY7X3o4dbG1cQ==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

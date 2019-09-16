@@ -7,6 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 import {FormGroup, FormControl} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {ToastsManager} from 'ng6-toastr/ng2-toastr';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
     templateUrl: './blog.component.html',
@@ -26,20 +27,32 @@ export class BlogComponent implements OnInit {
     id: number;
     url: string;
 
-    constructor(private http: HttpClient, private router: Router, private activeRoute: ActivatedRoute, private appComponent: AppComponent, public toastr: ToastsManager, viewContainerRef: ViewContainerRef) {
+    constructor(private http: HttpClient,
+                private router: Router,
+                private activeRoute: ActivatedRoute,
+                private appComponent: AppComponent,
+                private toastr: ToastsManager,
+                private viewContainerRef: ViewContainerRef,
+                private spinner: NgxSpinnerService
+    ) {
         this.toastr.setRootViewContainerRef(viewContainerRef);
     }
 
     loadBlogItem(itemId: any) {
-        this.http.get('api/blog/' + itemId).subscribe((val) => this.blogForm.setValue(val));
+        this.http.get('api/blog/' + itemId).subscribe((val) => {
+            this.blogForm.setValue(val);
+            this.spinner.hide();
+        });
     }
 
     ngOnInit() {
+        this.spinner.show();
         this.id = this.activeRoute.snapshot.queryParams["id"];
         if (this.id) {
             this.loadBlogItem(this.id);
         } else {
             this.blogForm.patchValue({userId: this.appComponent.getUserId()});
+            this.spinner.hide();
         }
     }
 
@@ -68,6 +81,7 @@ export class BlogComponent implements OnInit {
     }
 
     onSubmit() {
+        this.spinner.show();
         if (this.id) {
             this.http.put('api/blog/', this.blogForm.value)
                 .map((res: Response) => res)

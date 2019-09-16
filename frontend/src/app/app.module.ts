@@ -12,6 +12,7 @@ import {ClickableParentComponent} from "./clickable.parent.component";
 import {CookieService} from 'ngx-cookie-service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastModule} from 'ng6-toastr/ng2-toastr';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'list', pathMatch: 'full'},
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes, {useHash: true}),
         HttpClientModule,
-        AgGridModule.withComponents([ClickableParentComponent])
+        AgGridModule.withComponents([ClickableParentComponent]),
+        NgxSpinnerModule
     ],
     providers: [CookieService],
     bootstrap: [AppComponent]
