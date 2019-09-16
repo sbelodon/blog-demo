@@ -20,7 +20,11 @@ export class ListComponent {
             headerName: 'Image',
             field: 'id',
             cellRenderer: params => {
-                return '<img src="api/image/' + params.value + '"/>';
+                let image = params.data.image;
+                if(image && image.length > 0) {
+                    return '<img src="api/image/' + params.value + '" style="width: 50px; height: 50px;"/>';
+                }
+                return "";
             }
         },
         {
@@ -57,7 +61,8 @@ export class ListComponent {
         private router: Router,
         private cookieService: CookieService,
         private appComponent: AppComponent,
-        private spinner: NgxSpinnerService) {
+        private spinner: NgxSpinnerService
+    ) {
 
     }
 

@@ -57,12 +57,13 @@ export class BlogComponent implements OnInit {
     }
 
     getImageUrl() {
-        if (this.url) {
+        if (this.url && this.url.length > 0) {
             return this.url;
         }
 
-        let id = this.blogForm.value.id;
-        if(id) {
+        let blogItem = this.blogForm.value;
+        let id = blogItem.id;
+        if(id && blogItem.image && blogItem.image.length > 0) {
             return 'api/image/' + id;
         }
         return undefined;

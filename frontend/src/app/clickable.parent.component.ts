@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import {AppComponent} from './app.component';
 import {Router} from "@angular/router";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
     templateUrl: './clickable.parent.component.html',
@@ -15,12 +16,12 @@ export class ClickableParentComponent implements ICellRendererAngularComp {
     constructor(
         private http: HttpClient,
         private appComponent: AppComponent,
-        private router: Router
+        private router: Router,
+        private spinner: NgxSpinnerService
     ) {
     }
 
     agInit(params: any): void {
-        console.log('params: ', params);
         this.params = params;
         this.cell = {row: params.value, col: params.colDef.headerName};
     }
@@ -34,6 +35,7 @@ export class ClickableParentComponent implements ICellRendererAngularComp {
     }
 
     onDelete(param) {
+        this.spinner.show();
         this.http.delete('api/blog/' + param.id)
             .catch((error: any) => Observable.throw(error || 'Server error'))
             .subscribe((deletedItemsCount) => {
@@ -42,6 +44,7 @@ export class ClickableParentComponent implements ICellRendererAngularComp {
                         (rowData: any[]) => {
                             this.params.api.setRowData(rowData);
                             this.params.api.sizeColumnsToFit();
+                            this.spinner.hide();
                         }
                     );
             });
